@@ -1,0 +1,52 @@
+body {
+  background-image: url(back.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  background-size: cover;
+  height: max-content;
+}
+
+.color {
+  border: 1px solid black;
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+}
+
+#color1 {
+  background-color: black;
+}
+
+#color2 {
+  background-color: gray;
+}
+
+#color3 {
+  background-color: darkgray;
+}
+ 
+#color4 {
+  background-color: lightgray;
+}
+
+#color5 {
+  background-color: whitesmoke;
+}
+
+#color-palette {
+
+}
+
+#pixel-board {
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pixel {
+  background-color: white;
+  border: 1px solid black;
+  height: 40px;
+  width: 40px;
+}
