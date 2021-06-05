@@ -8,9 +8,12 @@ function createPixelBoard(linesNumber) {
     for (let index = 0; index < linesNumber; index += 1) {
       const pixel = document.createElement('td');
       pixel.classList.add('pixel');
+      pixel.addEventListener('click', paint);
       row.appendChild(pixel);
     }
     board.appendChild(row);
+    document.getElementById('board-size').value = linesNumber;
+    
   }
 }
 document.onload = createPixelBoard(5);
@@ -24,16 +27,18 @@ function createBoardButton() {
     while (board.children.length > 0) {
       board.removeChild(board.firstChild);
     }
-    document.getElementById('board-size').value = '';
-  
+
     if (size < 5) {
       size = 5;
-      createPixelBoard(size);
       alert('Opa!\nO menor número possível é 5!')
+      createPixelBoard(size);
+      document.getElementById('board-size').value = 5;
+      
     } else if (size > 50) {
       size = 50;
-      createPixelBoard(size);
       alert('Opa!\nO maior número possível é 50!')
+      createPixelBoard(size);
+      document.getElementById('board-size').value = 50;
     } else {
       createPixelBoard(size);
     }
@@ -73,14 +78,9 @@ function paint(click) {
   click.target.style.backgroundColor = color;
 }
 
-const px = document.getElementsByClassName('pixel');
-
-for (let index = 0; index < px.length; index += 1) {
-  px[index].addEventListener('click', paint);
-}
-
 // LIMPAR O QUADRO
 function limpar() {
+  const px = document.getElementsByClassName('pixel');
   for (let index = 0; index < px.length; index += 1) {
     px[index].style.backgroundColor = 'white';
   }

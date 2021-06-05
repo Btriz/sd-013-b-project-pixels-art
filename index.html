@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>Pixel Art</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
+    <h1 id="hero-title">PIXEL ART</h1>
     <h1 id="title">Paleta de Cores</h1>
 
     <div id="color-palette">
@@ -15,15 +18,18 @@
         <div id="color4" class="color"></div>
         <div id="color5" class="color"></div>
     </div>
+
     <section>
-        <div>
+        <div id="a">
             <input type="number" id="board-size" min="5" max="50">
             <button id="generate-board">VQV</button>
         </div>
-    
-        <div>
-            <button id="clear-board">Limpar</button>
+
+        <div id="b">
+            <button id="random">Novas<br>Cores</button>
+            <button id="clear-board">Limpar</button>  
         </div>
+        
     </section>
 
     <table id="pixel-board">
