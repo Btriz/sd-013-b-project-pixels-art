@@ -15,6 +15,42 @@ function createPixelBoard(linesNumber) {
 }
 document.onload = createPixelBoard(5);
 
+function createBoardButton() {
+  let size = document.getElementById('board-size').value;
+
+  if (size === '') {
+    alert('Board inválido!');
+  } else {
+    while (board.children.length > 0) {
+      board.removeChild(board.firstChild);
+    }
+    document.getElementById('board-size').value = '';
+  
+    if (size < 5) {
+      size = 5;
+      createPixelBoard(size);
+      alert('Opa!\nO menor número possível é 5!')
+    } else if (size > 50) {
+      size = 50;
+      createPixelBoard(size);
+      alert('Opa!\nO maior número possível é 50!')
+    } else {
+      createPixelBoard(size);
+    }
+  }
+}
+
+function enter(key) {
+  if (key.keyCode === 13) {
+    createButton.click();
+  }
+}
+
+const input = document.getElementById('board-size');
+const createButton = document.getElementById('generate-board');
+createButton.addEventListener('click', createBoardButton);
+input.addEventListener('keyup', enter);
+
 // SELECIONAR CORES
 function selectColor(click) {
   if(click.target.classList.contains('selected')) {
@@ -35,7 +71,6 @@ function paint(click) {
   const selected = document.querySelector(".selected");
   const color = window.getComputedStyle(selected, null).getPropertyValue('background-color');
   click.target.style.backgroundColor = color;
-  
 }
 
 const px = document.getElementsByClassName('pixel');
@@ -43,3 +78,13 @@ const px = document.getElementsByClassName('pixel');
 for (let index = 0; index < px.length; index += 1) {
   px[index].addEventListener('click', paint);
 }
+
+// LIMPAR O QUADRO
+function limpar() {
+  for (let index = 0; index < px.length; index += 1) {
+    px[index].style.backgroundColor = 'white';
+  }
+}
+
+const clearButton = document.getElementById('clear-board');
+clearButton.addEventListener('click', limpar);

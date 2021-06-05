@@ -11,6 +11,18 @@ h1 {
   width: max-content;
 }
 
+section {
+  margin: 20px auto;
+  width: max-content;
+  border: 1px solid red;
+}
+
+section div {
+  margin: 20px auto;
+  border: 1px solid red;
+
+}
+
 .color {
   border: 1px solid black;
   display: inline-block;
@@ -40,7 +52,7 @@ h1 {
 }
 
 #color-palette {
-  margin: 30px auto;
+  margin: 20px auto 0px auto;
   height: 80px;
   width: max-content;
 }
