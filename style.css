@@ -4,14 +4,19 @@ body {
   background-attachment: fixed;
   background-position: bottom;
   background-size: cover;
-  height: max-content;
+}
+
+h1 {
+  margin: auto;
+  width: max-content;
 }
 
 .color {
   border: 1px solid black;
   display: inline-block;
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
+  transition: 0.1s linear;
 }
 
 #color1 {
@@ -35,7 +40,13 @@ body {
 }
 
 #color-palette {
+  margin: 30px auto;
+  height: 80px;
+  width: max-content;
+}
 
+#color-palette::selection {
+  background-color: none;
 }
 
 #pixel-board {
@@ -49,4 +60,11 @@ body {
   border: 1px solid black;
   height: 40px;
   width: 40px;
+}
+
+.selected {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 5px;
+  box-shadow: 0 0 1.7em white;
 }
