@@ -25,51 +25,66 @@ function createPixelBoard() {
   }
 }
 
-function createBoardButton() {
-  size = document.getElementById('board-size').value;
+const input = document.getElementById('board-size');
 
-  if (size <= 0) {
+function createBoardButton() {
+  size = input.value;
+
+  if (size < 5) {
+    size = 5;
+    alert('Opa!\nO menor número possível é 5!');
+    createPixelBoard();
+    /* document.getElementById('board-size').value = 5; */
+  } else if (size > 50) {
+    size = 50;
+    alert('Opa!\nO maior número possível é 50!');
+    createPixelBoard();
+    /* document.getElementById('board-size').value = 50; */
+  } else {
+    createPixelBoard();
+  }
+}
+
+function validBoard() {
+  if (input.value <= 0) {
     alert('Board inválido!');
   } else {
     while (board.children.length > 0) {
       board.removeChild(board.firstChild);
+      console.log(board.children.length);
     }
-
-    if (size < 5) {
-      size = 5;
-      alert('Opa!\nO menor número possível é 5!');
-      createPixelBoard();
-      /* document.getElementById('board-size').value = 5; */
-    } else if (size > 50) {
-      size = 50;
-      alert('Opa!\nO maior número possível é 50!');
-      createPixelBoard();
-      /* document.getElementById('board-size').value = 50; */
-    } else {
-      createPixelBoard();
-    }
+    createBoardButton();
   }
 }
 
 const createButton = document.getElementById('generate-board');
-createButton.addEventListener('click', createBoardButton);
+createButton.addEventListener('click', validBoard);
 
+// ENTER NO INPUT
 function enter(key) {
   if (key.keyCode === 13) {
     createButton.click();
   }
 }
 
-const input = document.getElementById('board-size');
-
 input.addEventListener('keyup', enter);
+
+// SELECIONAR CORES
+function selectColor(click) {
+  if (click.target.classList.contains('selected')) {
+    // empty
+  } else {
+    const deselect = document.querySelector('.selected');
+    deselect.classList.remove('selected');
+    click.target.classList.add('selected');
+  }
+}
 
 // GERAR NOVAS CORES
 const palette = document.getElementById('color-palette');
 
 function createPalette() {
   const numberOfColors = 4;
-
   for (let index = 0; index < numberOfColors; index += 1) {
     const color = document.createElement('div');
 
@@ -77,11 +92,9 @@ function createPalette() {
     color.addEventListener('click', selectColor);
     palette.appendChild(color);
   }
-
-  const black = palette.firstElementChild
+  const black = palette.firstElementChild;
   black.style.backgroundColor = 'black';
   black.classList.add('selected');
-
   for (let index = 1; index < numberOfColors; index += 1) {
     const hue = Math.round(1000 * (Math.random() * 0.33));
     const saturation = '100%';
@@ -104,17 +117,6 @@ randomButton.addEventListener('click', paletteButton);
 // ONLOAD
 window.addEventListener('load', createPalette);
 window.addEventListener('load', createPixelBoard);
-
-// SELECIONAR CORES
-function selectColor(click) {
-  if (click.target.classList.contains('selected')) {
-    // empty
-  } else {
-    const deselect = document.querySelector('.selected');
-    deselect.classList.remove('selected');
-    click.target.classList.add('selected');
-  }
-}
 
 // LIMPAR O QUADRO
 function limpar() {
