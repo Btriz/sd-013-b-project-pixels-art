@@ -65,24 +65,45 @@ const input = document.getElementById('board-size');
 input.addEventListener('keyup', enter);
 
 // GERAR NOVAS CORES
-function changeColors() {
-  const changeble = document.getElementsByClassName('changeble');
+const palette = document.getElementById('color-palette');
 
-  for (let index = 0; index < changeble.length; index += 1) {
+function createPalette() {
+  const numberOfColors = 4;
+
+  for (let index = 0; index < numberOfColors; index += 1) {
+    const color = document.createElement('div');
+
+    color.classList.add('color');
+    color.addEventListener('click', selectColor);
+    palette.appendChild(color);
+  }
+
+  const black = palette.firstElementChild
+  black.style.backgroundColor = 'black';
+  black.classList.add('selected');
+
+  for (let index = 1; index < numberOfColors; index += 1) {
     const hue = Math.round(1000 * (Math.random() * 0.33));
     const saturation = '100%';
     const lightness = Math.round(100 * (Math.random() * (0.9 - 0.2) + 0.2));
-    const color = `hsl(${hue}, ${saturation}, ${lightness}%`;
-    changeble[index].style.backgroundColor = color;
+    const newColor = `hsl(${hue}, ${saturation}, ${lightness}%`;
+    palette.children[index].style.backgroundColor = newColor;
   }
 }
 
+function paletteButton() {
+  while (palette.children.length > 0) {
+    palette.removeChild(palette.lastElementChild);
+  }
+  createPalette();
+}
+
 const randomButton = document.getElementById('random');
-randomButton.addEventListener('click', changeColors);
+randomButton.addEventListener('click', paletteButton);
 
 // ONLOAD
+window.addEventListener('load', createPalette);
 window.addEventListener('load', createPixelBoard);
-window.addEventListener('load', changeColors);
 
 // SELECIONAR CORES
 function selectColor(click) {
@@ -93,11 +114,6 @@ function selectColor(click) {
     deselect.classList.remove('selected');
     click.target.classList.add('selected');
   }
-}
-const colors = document.getElementsByClassName('color');
-
-for (let index = 0; index < colors.length; index += 1) {
-  colors[index].addEventListener('click', selectColor);
 }
 
 // LIMPAR O QUADRO

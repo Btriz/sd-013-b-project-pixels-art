@@ -131,26 +131,6 @@ button:active {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.432);
 }
 
-#black {
-  background-color: black;
-}
-
-/* #white {
-  background-color: whitesmoke;
-}
-
-#color2{
-  background-color: rgb(128, 128, 128);
-}
-
-#color3{
-  background-color: darkgrey;
-}
-
-#color4{
-  background-color: lightgrey;
-} */
-
 #color-palette {
   margin: 20px auto 0;
   height: 80px;
